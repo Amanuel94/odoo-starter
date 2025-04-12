@@ -1,0 +1,23 @@
+<odoo>
+<!-- <data> -->
+      <record model = "open_academy.course" id = "1">
+        <field name = "title"> Odoo Essentials</field>
+        <field name = "description"> A Brief Introduction into the basics of Python and OdooERP </field>
+      </record>
+      
+      <record model="open_academy.course" id="2">
+        <field name="title">Advanced Odoo</field>
+        <field name="description">An in-depth exploration of advanced Odoo features and customization</field>
+      </record>
+
+      <record model="open_academy.course" id="3">
+        <field name="title">Odoo Development</field>
+        <field name="description">Learn how to develop custom modules and extend Odoo functionality</field>
+      </record>
+
+      <record model="open_academy.course" id="4">
+        <field name="title">Odoo Administration</field>
+        <field name="description">Master the skills needed to administer and manage Odoo systems</field>
+      </record>
+<!-- </data>      -->
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_open-academy_open-academy,open-academy.open-academy,model_open-academy_open-academy,base.group_user,1,1,1,1
