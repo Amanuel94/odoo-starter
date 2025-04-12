@@ -94,3 +94,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Odoo Config file
+odoo.conf
