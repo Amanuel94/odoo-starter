@@ -15,13 +15,14 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-
-	"Odoo field": {
+	"Odoo Tree View": {
 		"scope": "xml",
-		"prefix": "field",
+		"prefix": "tree",
 		"body": [
-			"<field name=\"${1:field}\" ${2:attrs}>${3:value}</field>$0"
+			"<tree string=\"${1:Tree View}\" ${2:attrs}>",
+			"\t<field name=\"${3:field}\"/>$0",
+			"</tree>"
 		],
-		"description": "Create a new field in Odoo"
+		"description": "Create a new tree view in Odoo"
 	}
 }
