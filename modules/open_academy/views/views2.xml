@@ -1,0 +1,18 @@
+<!-- View for custom partner-->
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="open_academy_partner_view_form">
+            <field name="name">Open Academy Instructor Profile</field>
+            <field name="model">open_academy.partner</field>
+            <field name="inherit_id" ref = "base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']" position="replace">
+                    <field name="instructor" string="Is Instructor" />
+                    <field name="session_ids" string="Sessions"/>
+                    <field name="category" />
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -32,6 +32,8 @@
                 <tree string="Course List">
                     <field name="title" />
                     <field name="description" />
+                    <field name="responsible_user" />
+                    <field name="session_ids" />
                 </tree>
             </field>
         </record>
@@ -45,7 +47,7 @@
                     <sheet>
                         <group>
                             <field name="title" />
-                            <field name="responsible_user"/>
+                            <field name="responsible_user" />
                         </group>
                         <notebook>
                             <page string="Description">
@@ -53,11 +55,12 @@
                             </page>
                             <page string="Sessions">
                                 <field name="session_ids" context="{'form_view_initial_mode': 'edit'}">
-                                    <tree editable="bottom">
+                                    <tree editable="bottom" decoration-color="('red' if duration >= 15 else 'black') if duration >= 5 else 'blue'">
                                         <field name="name" />
                                         <field name="start_date" />
                                         <field name="duration" />
                                         <field name="seats" />
+                                       
                                     </tree>
                                 </field>
 
@@ -84,7 +87,7 @@
         <record model="ir.actions.act_window" id="open_academy_list_sessions">
             <field name="name">Sessions</field>
             <field name="res_model">open_academy.session</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,calendar</field>
         </record>
         <menuitem id="session_list" name="All Sessions" sequence="11"
             action="open_academy_list_sessions" parent="open_academy_menu" />
@@ -94,16 +97,68 @@
             <field name="name">Open Academy Session Tree View</field>
             <field name="model">open_academy.session</field>
             <field name="arch" type="xml">
-                <tree string="Session List">
+                <tree string="Session List"
+                    decoration-danger="duration &gt;= 15"
+                    decoration-muted="duration &gt;= 5 and duration &lt; 15"
+                    decoration-info="duration &lt; 5">
                     <field name="name" />
                     <field name="start_date" />
-                    <field name="duration"/>
-                    <field name="seats"/>
+                    <field name="duration" />
+                    <field name="seats" />
                     <field name="instructor" />
-                    <field name="course_id"/>
+                    <field name="course_id" />
+                    <field name="percentage_seats2" widget="progressbar" />
                 </tree>
             </field>
         </record>
+
+        <record model="ir.ui.view" id="open_academy_session_view_form">
+            <field name="name">Open Academy Session Form View</field>
+            <field name="model">open_academy.session</field>
+            <field name="arch" type="xml">
+                <form string="Session Form">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="start_date" />
+                            <field name="duration" />
+                        </group>
+                        <group>
+                            <field name="seats" />
+                            <field name="instructor" />
+                            <field name="course_id" />
+                            <field name="active"/>
+                        </group>
+                        <notebook>
+                            <page string="Attendees">
+                                <field name="attendees_ids" context="{'form_view_initial_mode': 'edit'}">
+                                    <tree editable="bottom">
+                                            <field name="id"  />
+                                            <field name="email" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <field name="percentage_seats2" widget="progressbar" />
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Calander View for sessions -->
+         <record model="ir.ui.view" id="open_academy_session_view_calendar">
+            <field name="name">Open Academy Session Calendar View</field>
+            <field name="model">open_academy.session</field>
+            <field name="arch" type="xml">
+                <calendar string="Session Calendar" date_start="start_date" >
+                    <field name="name" />
+                    <field name="start_date" />
+                    <field name="duration" />
+                    <field name="seats" />
+                    <field name="instructor" />
+                </calendar>
+            </field>
+         </record>
 
         <!-- Attendees View for Session Model -->
         <!-- <record model="ir.ui.view" id="open_academy_session_view_tree">
